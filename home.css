@@ -4,13 +4,13 @@ main {
   display: block flex !important;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2em;
-  padding: 3em;
-  width: 40em;
+  gap: 2rem;
+  padding: 3rem;
+  width: 40rem;
 }
 
 main h1 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 300;
   margin: 0;
 }
@@ -22,19 +22,22 @@ ul {
   padding: 0;
   list-style-type: none;
   align-self: stretch;
-  margin-inline: -2em;
-  margin-bottom: -2em;
+  margin-inline: -2rem;
+  margin-bottom: -2rem;
 }
 
 /* List items */
 
 li {
   width: 100%;
-  padding-block: 1em;
-  padding-inline: 2em;
-  border-radius: 2em;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-radius: 2rem;
   position: relative;
   margin-top: 2px;
+  display: block flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 li:not(:first-child)::before {
@@ -42,7 +45,7 @@ li:not(:first-child)::before {
   display: block;
   position: absolute;
   height: 2px;
-  width: calc(100% - 4em);
+  width: calc(100% - 4rem);
   background-color: rgb(255 255 255 / 0.3);
   border-radius: 1px;
   top: -2px;
@@ -61,4 +64,32 @@ li:hover + li::before, li:hover::before {
 
 li p {
   margin: 0;
+  margin-left: 2.5rem !important;
 }
+
+li::after {
+  font-family: "Material Symbols Outlined";
+  content: "\e061";
+  font-variation-settings: "FILL" 1;
+  display: block;
+  position: absolute;
+  font-size: 0.6rem;
+  left: 2.6rem;
+}
+
+li.done::after {
+  font-family: "Material Symbols Rounded";
+  content: "\e5ca";
+  display: block;
+  position: absolute;
+  font-size: 1.8rem;
+  left: 2.2rem;
+}
+
+/* li::after:last-child {
+  content: "\e061";
+  font-family: "Material Symbols Rounded";
+  display: block;
+  position: absolute;
+  left: 1.5rem;
+} */

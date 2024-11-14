@@ -6,17 +6,17 @@ main {
   display: block flex !important;
   flex-direction: row;
   align-items: center;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  gap: 2em;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  gap: 2rem;
 }
 
 /* Card content - left */
 
 main h1 {
-  font-size: 6em;
+  font-size: 6rem;
   font-weight: 300;
 }
 
@@ -25,7 +25,7 @@ main h1 {
 .divider {
   display: block;
   width: 2px;
-  height: 7em;
+  height: 7rem;
   background-color: rgb(255 255 255 / 0.7);
   border-radius: 1px;
 }
@@ -38,12 +38,12 @@ main > div {
   align-items: flex-start;
   align-self: stretch;
   justify-content: space-around;
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 main > div > p:first-child {
-  padding: 1em;
-  margin-left: -1em;
+  padding: 1rem;
+  margin-left: -1rem;
 }
 
 main h1, main p {
@@ -52,10 +52,10 @@ main h1, main p {
 
 main a {
   color: white;
-  padding: 1em;
-  margin-left: -1em;
+  padding: 1rem;
+  margin-left: -1rem;
   text-decoration: none;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   position: relative;
 }
 
@@ -64,8 +64,8 @@ main a::after {
   display: block;
   position: absolute;
   height: 2px;
-  margin-top: 0.1em;
-  width: calc(100% - 2em);
+  margin-top: 0.1rem;
+  width: calc(100% - 2rem);
   background-color: rgb(255 255 255 / 0.7);
   border-radius: 1px;
   transform-origin: center;
