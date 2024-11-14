@@ -94,7 +94,7 @@ body {
   min-height: 100vh;
   height: 100vh;
   font-family: "Roboto", sans-serif;
-  background-image: url("/assets/pattern-background.jpg");
+  background-image: url("./assets/pattern-background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
