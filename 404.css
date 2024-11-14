@@ -1,3 +1,79 @@
+/* Roboto font */
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Setup */
+
 html {
   box-sizing: border-box;
 }
@@ -17,4 +93,94 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background-image: url("/assets/pattern-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+body * {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Main card (glassmorphic) */
+
+main {
+  display: block flex;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 3em;
+  padding-block: 1.5em;
+  border: solid 2px rgb(255 255 255 / 0.3);
+  gap: 2em;
+  background-color: rgb(255 255 255 / 0.3);
+  backdrop-filter: blur(1.2em);
+  border-radius: 2em;
+  color: white;
+}
+
+/* Card content - left */
+
+main h1 {
+  font-size: 6em;
+  font-weight: 300;
+}
+
+/* Divider */
+
+.divider {
+  display: block;
+  width: 2px;
+  height: 7em;
+  background-color: rgb(255 255 255 / 0.7);
+  border-radius: 1px;
+}
+
+/* Card content - right */
+
+main > div {
+  display: block flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  justify-content: space-around;
+  font-size: 1.3em;
+}
+
+main > div > p:first-child {
+  padding: 1em;
+  margin-left: -1em;
+}
+
+main h1, main p {
+  margin: 0;
+}
+
+main a {
+  color: white;
+  padding: 1em;
+  margin-left: -1em;
+  text-decoration: none;
+  font-size: 0.8em;
+  position: relative;
+}
+
+main a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  margin-top: 0.1em;
+  width: calc(100% - 2em);
+  background-color: rgb(255 255 255 / 0.7);
+  border-radius: 1px;
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+main a:hover::after {
+  transform: scaleX(1);
 }
