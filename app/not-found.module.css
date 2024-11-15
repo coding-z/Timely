@@ -1,0 +1,91 @@
+/* @import url("./globals.css"); */
+
+/* Glassmorphic cards */
+
+.glass {
+  display: block;
+  border: solid 2px rgb(255 255 255 / 0.3);
+  background-color: rgb(255 255 255 / 0.3);
+  backdrop-filter: blur(1.2rem);
+  border-radius: 2rem;
+  color: white;
+}
+
+/* Main Stuff */
+
+/* Main card */
+
+.main {
+  display: block flex !important;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  gap: 2rem;
+}
+
+/* Card content - left */
+
+.main h1 {
+  font-size: 6rem;
+  font-weight: 300;
+}
+
+/* Divider */
+
+.divider {
+  display: block;
+  width: 2px;
+  height: 7rem;
+  background-color: rgb(255 255 255 / 0.7);
+  border-radius: 1px;
+}
+
+/* Card content - right */
+
+.main > div {
+  display: block flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  justify-content: space-around;
+  font-size: 1.3rem;
+}
+
+.main > div > p:first-child {
+  padding: 1rem;
+  margin-left: -1rem;
+}
+
+.main h1, .main p {
+  margin: 0;
+}
+
+.link {
+  color: white;
+  padding: 1rem;
+  margin-left: -1rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  margin-top: 0.1rem;
+  width: calc(100% - 2rem);
+  background-color: rgb(255 255 255 / 0.7);
+  border-radius: 1px;
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}

@@ -26,7 +26,7 @@ body {
   min-height: 100vh;
   height: 100vh;
   font-family: "Roboto", sans-serif;
-  background-image: url("./public/pattern-background.jpg");
+  background-image: url("/pattern-background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -35,15 +35,4 @@ body {
 body * {
   font-family: inherit;
   font-size: inherit;
-}
-
-/* Glassmorphic cards */
-
-.glass {
-  display: block;
-  border: solid 2px rgb(255 255 255 / 0.3);
-  background-color: rgb(255 255 255 / 0.3);
-  backdrop-filter: blur(1.2rem);
-  border-radius: 2rem;
-  color: white;
 }
