@@ -26,7 +26,13 @@ export default function Home() {
 
   return (
     <main className="glass">
-      <h1>{list.title}</h1>
+      <header>
+        <h1 className="test">{list.title}</h1>
+        <button className="button">
+          New Item
+          {/* <span className="material-symbols-rounded">add</span> */}
+        </button>
+      </header>
       <ul>
         {list.items.map((item) => (
           <li

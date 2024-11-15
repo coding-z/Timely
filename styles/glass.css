@@ -1,0 +1,14 @@
+.glass {
+  display: block;
+  border: solid 1px rgb(255 255 255 / 0.2);
+  border-right-color: rgb(255 255 255 / 0.1);
+  border-bottom-color: rgb(255 255 255 / 0.1);
+  border-radius: 5px;
+  background-color: rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(15px);
+  box-shadow:
+    5px 5px 20px rgb(0 0 0 / 0.05),
+    5px 5px 20px inset rgb(255 255 255 / 0.05);
+  padding: 30px;
+  color: white;
+}

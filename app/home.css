@@ -1,71 +1,107 @@
-@import url("./globals.css");
+/* Custom Components */
+
+
+@import url("../styles/glass.css");
+@import url("../styles/button.css");
+
+
+
+/* Main Card Layout */
+
 
 main {
   display: block flex !important;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 3rem;
-  width: 40rem;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 30px;
+  width: 600px;
+}
+
+
+
+/* List Header */
+
+
+header {
+  display: block flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 main h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 300;
   margin: 0;
 }
 
+
+
 /* List */
+
 
 ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  align-self: stretch;
-  margin-inline: -2rem;
-  margin-bottom: -2rem;
+  /* margin-inline: -2rem; */
+  /* margin-bottom: -2rem; */
 }
 
-/* List items */
+
+
+/* List Items */
+
 
 li {
-  width: 100%;
-  padding-block: 1rem;
-  padding-inline: 2rem;
-  border-radius: 2rem;
+  padding: 10px;
+  border-radius: 5px;
   position: relative;
-  margin-top: 2px;
+  margin-top: 1px;
   display: block flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
+
+li:hover {
+  background-color: rgb(255 255 255 / 0.1);
+  cursor: pointer;
+  outline: solid 1px rgb(255 255 255 / 0.2);
+}
+
+li p {
+  margin: 0;
+  margin-left: 30px !important;
+}
+
+
+
+/* List Item Dividers */
+
 
 li:not(:first-child)::before {
   content: "";
   display: block;
   position: absolute;
-  height: 2px;
-  width: calc(100% - 4rem);
-  background-color: rgb(255 255 255 / 0.3);
+  height: 1px;
+  width: calc(100% - 20px);
+  background-color: rgb(255 255 255 / 0.2);
   border-radius: 1px;
-  top: -2px;
+  top: -1px;
   visibility: visible;
 }
 
-li:hover {
-  background-color: rgb(255 255 255 / 0.3);
-  cursor: pointer;
-  outline: solid 2px rgb(255 255 255 / 0.6);
-}
 
 li:hover + li::before, li:hover::before {
   visibility: hidden;
 }
 
-li p {
-  margin: 0;
-  margin-left: 2.5rem !important;
-}
+
+
+/* List Item Status Icons */
+
 
 li::after {
   font-family: "Material Symbols Outlined";
@@ -73,8 +109,8 @@ li::after {
   font-variation-settings: "FILL" 1;
   display: block;
   position: absolute;
-  font-size: 0.6rem;
-  left: 2.6rem;
+  font-size: 10px;
+  left: 20px;
 }
 
 li.done::after {
@@ -82,14 +118,6 @@ li.done::after {
   content: "\e5ca";
   display: block;
   position: absolute;
-  font-size: 1.8rem;
-  left: 2.2rem;
+  font-size: 25px;
+  left: 12px;
 }
-
-/* li::after:last-child {
-  content: "\e061";
-  font-family: "Material Symbols Rounded";
-  display: block;
-  position: absolute;
-  left: 1.5rem;
-} */
