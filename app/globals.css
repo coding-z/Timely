@@ -36,3 +36,14 @@ body * {
   font-family: inherit;
   font-size: inherit;
 }
+
+/* Glassmorphic Cards */
+
+.glass {
+  display: block;
+  border: solid 2px rgb(255 255 255 / 0.3);
+  background-color: rgb(255 255 255 / 0.3);
+  backdrop-filter: blur(1.2rem);
+  border-radius: 2rem;
+  color: white;
+}

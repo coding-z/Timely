@@ -1,15 +1,16 @@
 import Link from "next/link";
-import styles from "./not-found.module.css";
+// import styles from "./not-found.module.css";
+import "./not-found.css";
 
 export default function NotFound() {
   return (
-    <main className={`${styles.glass} ${styles.main}`}>
+    <main className="glass">
       <h1>404</h1>
-      <div className={styles.divider}></div>
+      <div className="divider"></div>
       <div>
         <p>Error fetching page</p>
-        <Link href="/" className={styles.link}>
-          <p>Return home</p>
+        <Link href="/" className="link">
+          Return home
         </Link>
       </div>
     </main>
