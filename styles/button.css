@@ -16,7 +16,7 @@
   color: white;
   background-color: transparent;
   /* letter-spacing: 1px; */
-  overflow: hidden;
+  /* overflow: hidden; */
   transform: translateY(0px);
   transition-property: transform;
   transition-duration: 0.4s;
@@ -35,7 +35,8 @@
   width: 50%;
   height: 100%;
   background-color: rgb(255 255 255 / 0.5);
-  transform: skewX(45deg) translateX(200%);
+  transform: skewX(0deg) translateX(200%);
+  /* right: 0; */
   transition-property: transform;
   transition-duration: 0.4s;
 }

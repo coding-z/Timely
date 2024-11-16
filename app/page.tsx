@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import "./home.css";
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
       { id: 5, name: "This is a new item", done: false },
     ],
   });
+  const [create, setCreate] = useState(false);
 
   function handleToggleItemStatus(id: number) {
     setList({
@@ -23,27 +24,46 @@ export default function Home() {
       ),
     });
   }
+  const style: CSSProperties = {};
 
   return (
     <main className="glass">
-      <header>
-        <h1 className="test">{list.title}</h1>
-        <button className="button">
-          New Item
-          {/* <span className="material-symbols-rounded">add</span> */}
-        </button>
-      </header>
-      <ul>
-        {list.items.map((item) => (
-          <li
-            key={item.id}
-            className={item.done ? "done" : undefined}
-            onClick={() => handleToggleItemStatus(item.id)}
-          >
-            <p>{item.name}</p>
-          </li>
-        ))}
-      </ul>
+      {create ? (
+        <>
+          <header>
+            <h1>New Task</h1>
+            <button className="button" onClick={() => setCreate(false)}>
+              Save
+            </button>
+          </header>
+        </>
+      ) : (
+        <>
+          <header css={{
+            backgroundColor: "green",
+            ":hover": {
+              backgroundColor: "red"
+            }
+          }}>
+            <h1>{list.title}</h1>
+            <button className="button" onClick={() => setCreate(true)}>
+              New Task
+              {/* <span className="material-symbols-rounded">add</span> */}
+            </button>
+          </header>
+          <ul>
+            {list.items.map((item) => (
+              <li
+                key={item.id}
+                className={item.done ? "done" : undefined}
+                onClick={() => handleToggleItemStatus(item.id)}
+              >
+                <p>{item.name}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </main>
   );
 }
