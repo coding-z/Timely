@@ -1,11 +1,11 @@
 import Link from "next/link";
-import "./not-found.css";
+import styles from "./not-found.module.scss";
 
 export default function NotFound() {
   return (
-    <main className="glass">
+    <main className={[styles.glass, styles.main].join(" ")}>
       <h1>404</h1>
-      <div className="divider"></div>
+      <div className={styles.divider}></div>
       <div>
         <p>Error fetching page</p>
         <Link href="/" className="link">

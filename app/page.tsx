@@ -1,7 +1,8 @@
 "use client";
 
 import { CSSProperties, useState } from "react";
-import "./home.css";
+import styles from "./home.module.scss";
+
 
 export default function Home() {
   const [list, setList] = useState({
@@ -27,35 +28,30 @@ export default function Home() {
   const style: CSSProperties = {};
 
   return (
-    <main className="glass">
+    <main className={[styles.glass, styles.main].join(" ")}>
       {create ? (
         <>
-          <header>
+          <header className={styles.header}>
             <h1>New Task</h1>
-            <button className="button" onClick={() => setCreate(false)}>
+            <button className={styles.button} onClick={() => setCreate(false)}>
               Save
             </button>
           </header>
         </>
       ) : (
         <>
-          <header css={{
-            backgroundColor: "green",
-            ":hover": {
-              backgroundColor: "red"
-            }
-          }}>
+          <header className={styles.header}>
             <h1>{list.title}</h1>
-            <button className="button" onClick={() => setCreate(true)}>
+            <button className={styles.button} onClick={() => setCreate(true)}>
               New Task
               {/* <span className="material-symbols-rounded">add</span> */}
             </button>
           </header>
-          <ul>
+          <ul className={styles.ul}>
             {list.items.map((item) => (
               <li
                 key={item.id}
-                className={item.done ? "done" : undefined}
+                className={[item.done ? styles.done : undefined, styles.li].join(" ")}
                 onClick={() => handleToggleItemStatus(item.id)}
               >
                 <p>{item.name}</p>

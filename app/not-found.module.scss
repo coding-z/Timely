@@ -1,15 +1,15 @@
 /* Custom Components */
 
 
-@import url("../styles/glass.css");
-@import url("../styles/link.css");
+@use "../styles/glass";
+@use "../styles/link";
 
 
 
 /* Main Card Layout */
 
 
-main {
+.main {
   display: block flex !important;
   flex-direction: row;
   align-items: center;
@@ -22,7 +22,7 @@ main {
 /* Left Card Content */
 
 
-main h1 {
+.main h1 {
   font-size: 6rem;
   font-weight: 300;
 }
@@ -45,7 +45,7 @@ main h1 {
 /* Right Card Content */
 
 
-main > div {
+.main > div {
   display: block flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,14 +54,14 @@ main > div {
   font-size: 1.3rem;
 }
 
-main > div > p:first-child {
+.main > div > p:first-child {
   padding-block: 10px;
 }
 
-main h1, main p {
+.main h1, .main p {
   margin: 0;
 }
 
-main > div .link {
+.main > div .link {
   margin-left: -10px;
 }
