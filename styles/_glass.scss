@@ -1,14 +1,31 @@
-.glass {
+$border-width: 1px;
+$color-normal: rgb(255 255 255 / 0.1);
+$color-bright: rgb(255 255 255 / 0.2);
+
+%glass {
   display: block;
-  border: solid 1px rgb(255 255 255 / 0.2);
-  border-right-color: rgb(255 255 255 / 0.1);
-  border-bottom-color: rgb(255 255 255 / 0.1);
+  background-color: $color-normal;
+  border: solid $border-width $color-bright;
+  border-right-color: $color-normal;
+  border-bottom-color: $color-normal;
   border-radius: 5px;
-  background-color: rgb(255 255 255 / 0.1);
   backdrop-filter: blur(15px);
   box-shadow:
-    5px 5px 20px rgb(0 0 0 / 0.05),
-    5px 5px 20px inset rgb(255 255 255 / 0.05);
-  padding: 30px;
+    5px 5px 15px rgb(0 0 0 / 0.1),
+    inset 5px 5px 15px rgb(255 255 255 / 0.1);
   color: white;
+  overflow: hidden;
+}
+
+$large-padding: 30px;
+$small-padding: 10px;
+
+%large-glass {
+  @extend %glass;
+  padding: $large-padding;
+}
+
+%small-glass {
+  @extend %glass;
+  padding: $small-padding;
 }

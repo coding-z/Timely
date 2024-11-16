@@ -1,7 +1,7 @@
 "use client";
 
 import { CSSProperties, useState } from "react";
-import styles from "./home.module.scss";
+import "./home.scss";
 
 
 export default function Home() {
@@ -28,30 +28,30 @@ export default function Home() {
   const style: CSSProperties = {};
 
   return (
-    <main className={[styles.glass, styles.main].join(" ")}>
+    <main>
       {create ? (
         <>
-          <header className={styles.header}>
+          <header>
             <h1>New Task</h1>
-            <button className={styles.button} onClick={() => setCreate(false)}>
+            <button onClick={() => setCreate(false)}>
               Save
             </button>
           </header>
         </>
       ) : (
         <>
-          <header className={styles.header}>
+          <header>
             <h1>{list.title}</h1>
-            <button className={styles.button} onClick={() => setCreate(true)}>
+            <button onClick={() => setCreate(true)}>
               New Task
               {/* <span className="material-symbols-rounded">add</span> */}
             </button>
           </header>
-          <ul className={styles.ul}>
+          <ul>
             {list.items.map((item) => (
               <li
                 key={item.id}
-                className={[item.done ? styles.done : undefined, styles.li].join(" ")}
+                className={item.done ? "done" : undefined}
                 onClick={() => handleToggleItemStatus(item.id)}
               >
                 <p>{item.name}</p>

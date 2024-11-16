@@ -1,46 +1,40 @@
-.button {
+@use "glass";
+
+$button-height: 40px;
+
+%button {
+  @extend %small-glass;
   display: block flex;
-  position: relative;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
+  height: $button-height;
   margin: 0;
-  padding: 10px;
-  border: solid 1px rgb(255 255 255 / 0.2);
-  border-right-color: rgb(255 255 255 / 0.1);
-  border-bottom-color: rgb(255 255 255 / 0.1);
-  border-radius: 5px;
-  box-shadow:
-    5px 5px 20px rgb(0 0 0 / 0.05),
-    5px 5px 20px inset rgb(255 255 255 / 0.05);
-  color: white;
   background-color: transparent;
-  /* letter-spacing: 1px; */
-  /* overflow: hidden; */
   transform: translateY(0px);
   transition-property: transform;
   transition-duration: 0.4s;
-}
 
-.button:hover {
-  background-color: rgb(255 255 255 / 0.1);
-  cursor: pointer;
-  transform: translateY(-5px);
-}
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    background-color: glass.$color-normal;
+  }
 
-.button::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background-color: rgb(255 255 255 / 0.5);
-  transform: skewX(0deg) translateX(200%);
-  /* right: 0; */
-  transition-property: transform;
-  transition-duration: 0.4s;
-}
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(255 255 255 / 0.5);
+    transform: skewX(45deg) translateX(calc(101% + $button-height));
+    transition-property: transform;
+    transition-duration: 0.4s;
+  }
 
-.button:hover::after {
-  transform: skewX(45deg) translateX(-200%);
+  &:hover::after {
+    transform: skewX(45deg) translateX(calc(-101% - $button-height));
+  }
 }
