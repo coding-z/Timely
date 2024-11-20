@@ -3,6 +3,7 @@
 import Glass from "./glass";
 import { VscCircle } from "react-icons/vsc";
 import { LuCheck } from "react-icons/lu";
+import { useState } from "react";
 
 interface ChecklistItem {
   id: number;
@@ -25,17 +26,30 @@ const mockData: Checklist = {
   ],
 };
 
-export default function Checklist({
-  checklist = mockData,
-}: {
-  checklist?: Checklist;
-}) {
+export default function Checklist({ data = mockData }: { data?: Checklist }) {
+  const [checklist, setChecklist] = useState(data);
+
   return (
     <div>
       <h1>{checklist.title}</h1>
       <ul>
         {checklist.items.map((item) => (
-          <li key={item.id}>
+          <li
+            key={item.id}
+            onClick={(event) => {
+              setChecklist({
+                ...checklist,
+                items: checklist.items.map((current) =>
+                  current.id === item.id
+                    ? {
+                        ...current,
+                        done: !current.done,
+                      }
+                    : current
+                ),
+              });
+            }}
+          >
             <Glass variant="hover">
               <div className="item-layout">
                 {item.done ? <LuCheck /> : <VscCircle />}
@@ -62,6 +76,10 @@ export default function Checklist({
           justify-content: flex-start;
           align-items: center;
           gap: 10px;
+        }
+
+        li:hover {
+          cursor: pointer;
         }
 
         h1 {
