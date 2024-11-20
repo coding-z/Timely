@@ -1,3 +1,7 @@
+"use client";
+
+import Glass from "./glass";
+
 interface ChecklistItem {
   id: number;
   name: string;
@@ -20,13 +24,26 @@ const mockData: Checklist = {
 
 export default function Checklist({ checklist = mockData }: { checklist?: Checklist; }) {
   return (
-    <>
+    <div>
       <h1>{checklist.title}</h1>
       <ul>
         {checklist.items.map((item) => (
-          <li key={item.id}>{item.name}</li>
+          <li key={item.id}>
+            <Glass variant="hover">
+              {item.name}
+            </Glass>
+          </li>
         ))}
       </ul>
-    </>
+      <style jsx>{`
+        div {
+          display: block flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 30px;
+        }
+      `}</style>
+    </div>
   );
 }
