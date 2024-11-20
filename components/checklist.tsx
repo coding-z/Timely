@@ -1,10 +1,13 @@
 "use client";
 
 import Glass from "./glass";
+import { VscCircle } from "react-icons/vsc";
+import { LuCheck } from "react-icons/lu";
 
 interface ChecklistItem {
   id: number;
   name: string;
+  done: boolean;
 }
 
 interface Checklist {
@@ -15,14 +18,18 @@ interface Checklist {
 const mockData: Checklist = {
   title: "Stuff to do",
   items: [
-    { id: 1, name: "Start project" },
-    { id: 2, name: "Finish project" },
-    { id: 3, name: "Be quick and efficient" },
-    { id: 4, name: "Do something useful" }
-  ]
+    { id: 1, name: "Start project", done: false },
+    { id: 2, name: "Finish project", done: true },
+    { id: 3, name: "Be quick and efficient", done: true },
+    { id: 4, name: "Do something useful", done: false },
+  ],
 };
 
-export default function Checklist({ checklist = mockData }: { checklist?: Checklist; }) {
+export default function Checklist({
+  checklist = mockData,
+}: {
+  checklist?: Checklist;
+}) {
   return (
     <div>
       <h1>{checklist.title}</h1>
@@ -30,7 +37,10 @@ export default function Checklist({ checklist = mockData }: { checklist?: Checkl
         {checklist.items.map((item) => (
           <li key={item.id}>
             <Glass variant="hover">
-              {item.name}
+              <div className="item-layout">
+                {item.done ? <LuCheck /> : <VscCircle />}
+                {item.name}
+              </div>
             </Glass>
           </li>
         ))}
@@ -40,8 +50,18 @@ export default function Checklist({ checklist = mockData }: { checklist?: Checkl
           display: block flex;
           flex-direction: column;
           justify-content: flex-start;
-          align-items: flex-start;
+          align-items: stretch;
           gap: 30px;
+          min-width: 300px;
+          width: 500px;
+        }
+
+        .item-layout {
+          display: block flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
         }
 
         h1 {
@@ -65,7 +85,8 @@ export default function Checklist({ checklist = mockData }: { checklist?: Checkl
           }
         }
 
-        li:not(:first-child):hover::before, li:not(:last-child):hover + li::before {
+        li:not(:first-child):hover::before,
+        li:not(:last-child):hover + li::before {
           visibility: hidden;
         }
       `}</style>
