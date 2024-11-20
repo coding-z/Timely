@@ -34,7 +34,7 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
     <div className="root">
       <header>
         <h1>{checklist.title}</h1>
-        <Button>Add Item</Button>
+        <Button>New Task</Button>
       </header>
       <ul>
         {checklist.items.map((item) => (
@@ -54,7 +54,7 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
               });
             }}
           >
-            <Glass variant="hover">
+            <Glass>
               <div className="item-layout">
                 {item.done ? <LuCheck /> : <VscCircle />}
                 {item.name}

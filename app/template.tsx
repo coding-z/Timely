@@ -7,6 +7,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <>
       {children}
       <style jsx global>{`
+        :root {
+          --font-size-md: 16px;
+          --border-radius: 5px;
+        }
+
         html {
           box-sizing: border-box;
 

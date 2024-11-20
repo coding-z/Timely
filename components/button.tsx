@@ -1,26 +1,36 @@
 "use client";
 
-import React from "react";
-import Glass from "./glass";
+import { ComponentProps, forwardRef } from "react";
 
-export default function Button({ children, ...props }: { children: React.ReactNode; props?: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>; }) {
-  return (
-    <>
-      {/* <div className="root">
-        <Glass variant="secondary">{children}</Glass>
-      </div> */}
-      <button {...props}>{children}</button>
-      <style jsx>{`
-        div.root {
-          transition-property: transform;
-          transition-duration: 0.4s;
+export default forwardRef<HTMLButtonElement, ComponentProps<"button">>(
+  function Button({ children, ...props }, ref) {
+    return (
+      <>
+        <button {...props} ref={ref}>
+          {children}
+        </button>
+        <style jsx>{`
+          button {
+            border: 1px solid rgb(255 255 255 / 0.2);
+            border-right-color: rgb(255 255 255 / 0.1);
+            border-bottom-color: rgb(255 255 255 / 0.1);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            background-color: transparent;
+            backdrop-filter: blur(5px);
+            box-shadow: inset 5px 5px 15px rgb(255 255 255 / 0.05),
+              5px 5px 15px rgb(0 0 0 / 0.05);
+            font-size: var(--font-size-md);
+            transition: transform 0.4s;
 
-          &:hover {
-            transform: translateY(-5px);
-            cursor: pointer;
+            &:hover {
+              cursor: pointer;
+              transform: translateY(-5px);
+              background-color: rgb(255 255 255 / 0.1);
+            }
           }
-        }
-      `}</style>
-    </>
-  );
-}
+        `}</style>
+      </>
+    );
+  }
+);
