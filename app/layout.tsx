@@ -1,10 +1,17 @@
+import { Metadata } from "next";
+import { Geist_Mono } from "next/font/google";
 import React from "react";
 import StyledJsxRegistry from "./registry";
-import { Metadata } from "next";
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "Timely",
-  description: "Personal planning and time management web app"
+  description: "Personal planning and time management web app",
 };
 
 export default function RootLayout({
@@ -13,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" dir="ltr">
+    <html lang="en-GB" dir="ltr" className={geistMono.className}>
       <body>
         <StyledJsxRegistry>{children}</StyledJsxRegistry>
       </body>
