@@ -7,6 +7,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: "400",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
