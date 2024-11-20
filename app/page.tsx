@@ -1,3 +1,9 @@
+import Glass from "../components/glass";
+
 export default function Page() {
-  return <h1>Hello</h1>;
+  return (
+    <Glass>
+      <h1>Hello</h1>
+    </Glass>
+  );
 }
