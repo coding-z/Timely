@@ -43,6 +43,31 @@ export default function Checklist({ checklist = mockData }: { checklist?: Checkl
           align-items: flex-start;
           gap: 30px;
         }
+
+        h1 {
+          margin-left: 11px;
+        }
+
+        li:not(:first-child) {
+          position: relative;
+          margin-top: -1px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 1px;
+            width: calc(100% - 22px);
+            border-radius: 1px;
+            background-color: rgb(255 255 255 / 0.35);
+            top: 0;
+            left: 11px;
+          }
+        }
+
+        li:not(:first-child):hover::before, li:not(:last-child):hover + li::before {
+          visibility: hidden;
+        }
       `}</style>
     </div>
   );
