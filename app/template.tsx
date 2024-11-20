@@ -40,6 +40,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
         h1, h2, h3, h4, h5, h6, p {
           margin: 0;
         }
+
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
       `}</style>
     </>
   );
