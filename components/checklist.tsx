@@ -4,6 +4,7 @@ import Glass from "./glass";
 import { VscCircle } from "react-icons/vsc";
 import { LuCheck } from "react-icons/lu";
 import { useState } from "react";
+import Button from "./button";
 
 interface ChecklistItem {
   id: number;
@@ -30,8 +31,11 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
   const [checklist, setChecklist] = useState(data);
 
   return (
-    <div>
-      <h1>{checklist.title}</h1>
+    <div className="root">
+      <header>
+        <h1>{checklist.title}</h1>
+        <Button>Add Item</Button>
+      </header>
       <ul>
         {checklist.items.map((item) => (
           <li
@@ -60,7 +64,7 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
         ))}
       </ul>
       <style jsx>{`
-        div {
+        div.root {
           display: block flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -68,6 +72,13 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
           gap: 30px;
           min-width: 300px;
           width: 500px;
+        }
+
+        header {
+          display: block flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .item-layout {
