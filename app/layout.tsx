@@ -1,4 +1,5 @@
 import React from "react";
+import StyledJsxRegistry from "./registry";
 
 export default function RootLayout({
   children,
@@ -7,7 +8,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB" dir="ltr">
-      <body>{children}</body>
+      <body>
+        <StyledJsxRegistry>{children}</StyledJsxRegistry>
+      </body>
     </html>
   );
 }
