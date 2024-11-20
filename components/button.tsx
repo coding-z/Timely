@@ -3,12 +3,13 @@
 import React from "react";
 import Glass from "./glass";
 
-export default function Button({ children }: { children: React.ReactNode }) {
+export default function Button({ children, ...props }: { children: React.ReactNode; props?: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>; }) {
   return (
     <>
-      <div className="root">
+      {/* <div className="root">
         <Glass variant="secondary">{children}</Glass>
-      </div>
+      </div> */}
+      <button {...props}>{children}</button>
       <style jsx>{`
         div.root {
           transition-property: transform;
