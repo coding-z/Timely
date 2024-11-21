@@ -9,6 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       <style jsx global>{`
         :root {
           --font-size-md: 16px;
+          --font-size-xl: 48px;
           --border-radius: 5px;
         }
 
