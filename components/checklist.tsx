@@ -27,6 +27,14 @@ const mockData: Checklist = {
   ],
 };
 
+export function ChecklistItem({ item, key }: { item: ChecklistItem, key: number }) {
+  return (
+    <li key={key}>
+      
+    </li>
+  );
+}
+
 export default function Checklist({ data = mockData }: { data?: Checklist }) {
   const [checklist, setChecklist] = useState(data);
 
