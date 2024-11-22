@@ -1,83 +1,82 @@
 "use client";
 
+import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 export default function Glass({
-  iterations,
-  setIterations,
-  children,
+  shine = 0,
+  children
 }: {
-  iterations: number;
-  setIterations: React.Dispatch<React.SetStateAction<number>>;
+  shine?: number;
   children: React.ReactNode;
 }) {
-  const mainRef = useRef<HTMLDivElement>(null);
-  const shardRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [shardClass, setShardClass] = useState("shard");
+  const [shineClass, setShineClass] = useState(false);
+  const [shineCount, setShineCount] = useState(shine);
 
   useEffect(() => {
-    if (!mainRef.current) return;
-    setHeight(window.getComputedStyle(mainRef.current).height);
-  }, [mainRef]);
+    if (!rootRef.current) return;
+    setHeight(window.getComputedStyle(rootRef.current).height);
+  }, [rootRef]);
+
+  useEffect(() => setShineCount(shine), [shine]);
 
   useEffect(() => {
-    if (!iterations) return;
-    setVisible(true);
-    setShardClass("shard shine");
-    console.log(shardRef.current.className);
+    if (!shineCount) return;
 
-    const timeout1 = window.setTimeout(() => {
-      setVisible(false);
-      setShardClass("shard");
-    }, 400);
-
+    setShineClass(true);
+    const timeout1 = window.setTimeout(() => setShineClass(false), 500);
     const timeout2 = window.setTimeout(() => {
-      setIterations((count) => count - 1);
-    }, 1400);
+      setShineCount((count) => count - 1);
+    }, 1500);
 
     return () => {
       window.clearTimeout(timeout1);
       window.clearTimeout(timeout2);
     };
-  }, [iterations]);
-
+  }, [shineCount]);
+  
   return (
-    <div className="root" ref={mainRef}>
-      {children}
-      <div className={shardClass} ref={shardRef}></div>
+    <>
+      <div ref={rootRef} className="root">
+        {children}
+        <div className={classNames("shard", { shine: shineClass })} />
+      </div>
       <style jsx>{`
-        div.root {
+        .root {
           position: relative;
-          border: 1px solid rgb(255 255 255 / 0.2);
-          border-right-color: rgb(255 255 255 / 0.1);
-          border-bottom-color: rgb(255 255 255 / 0.1);
+          padding: var(--spacing-primary);
+          background-color: var(--background-color-primary);
+          backdrop-filter: var(--blur-primary);
+          box-shadow: var(--box-shadow-primary);
           border-radius: var(--border-radius);
-          padding: 30px;
-          background-color: rgb(255 255 255 / 0.1);
-          backdrop-filter: blur(15px);
-          box-shadow: inset 5px 5px 15px rgb(255 255 255 / 0.1),
-            5px 5px 15px rgb(0 0 0 / 0.1);
+          border-style: var(--border-style);
+          border-width: var(--border-width);
+          border-color: var(--border-color);
           overflow: hidden;
         }
 
-        div.shard {
+        .shard {
           position: absolute;
-          height: ${height};
+          height: 100%;
           width: 50%;
-          background-color: rgb(255 255 255 / 0.5);
-          top: -1px;
-          right: -1px;
-          transform: skewX(45deg) translateX(calc(100% + ${height} / 2));
-          transition: transform 0.4s;
-          visibility: ${visible ? "visible" : "hidden"};
-        }
+          background-color: var(--shard-color);
+          top: 0;
+          right: 0;
+          transform:
+            skewX(45deg)
+            translateX(calc(100% + ${height} / 2 + var(--border-width)));
+          transition: transform 500ms;
+          visibility: ${shineClass ? "visible" : "hidden"};
 
-        div.shard.shine {
-          transform: skewX(45deg) translateX(calc(-1px - 200% - ${height} / 2));
+          &.shine {
+            transform:
+              skewX(45deg)
+              translateX(calc(-200% - ${height} / 2 - var(--border-width)));
+          }
         }
       `}</style>
-    </div>
-  );
+    </>
+  )
 }

@@ -6,12 +6,19 @@ import Glass from "../components/glass";
 import Timer from "../components/timer";
 
 export default function Page() {
-  const [iterations, setIterations] = useState(0);
+  const [shine, setShine] = useState(0);
   
   return (
-    <Glass iterations={iterations} setIterations={setIterations}>
+    <Glass shine={shine}>
       {/* <Checklist /> */}
-      <Timer iterations={iterations} setIterations={setIterations} />
+      {/* <Timer iterations={iterations} setIterations={setIterations} /> */}
+      <h1>Hello</h1>
+      <button onClick={() => {
+        setShine(5);
+      }}>Start</button>
+      <button onClick={() => {
+        setShine(0);
+      }}>Stop</button>
     </Glass>
   );
 }

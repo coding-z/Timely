@@ -62,12 +62,12 @@ export default function Checklist({ data = mockData }: { data?: Checklist }) {
               });
             }}
           >
-            <Glass>
+            {/* <Glass> */}
               <div className="item-layout">
                 {item.done ? <LuCheck /> : <VscCircle />}
                 {item.name}
               </div>
-            </Glass>
+            {/* </Glass> */}
           </li>
         ))}
       </ul>
