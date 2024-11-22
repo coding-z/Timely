@@ -12,23 +12,30 @@ import Button from "./button";
 
 function TimerInput() {
   const ref = useRef<HTMLInputElement>(null);
-  const [cursor, setCursor] = useState<number | null>(null);
+  const [cursor, setCursor] = useState<{
+    start: number | null;
+    end: number | null;
+  }>({ start: null, end: null });
   const [value, setValue] = useState("00:00:00");
 
   useEffect(() => {
-    ref.current.setSelectionRange(cursor, cursor);
-  }, [cursor]);
+    ref.current.setSelectionRange(cursor.start, cursor.end);
+  }, [cursor.start, cursor.end]);
 
   function handleBlur(event: FocusEvent<HTMLInputElement, Element>) {
-    setCursor(null);
+    setCursor({ start: null, end: null });
   }
 
   function handleSelectChange(event: SyntheticEvent<HTMLInputElement, Event>) {
-    setCursor(ref.current.selectionStart);
+    setCursor({
+      start: ref.current.selectionStart,
+      end: ref.current.selectionEnd,
+    });
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const start = ref.current.selectionStart;
+    const end = ref.current.selectionEnd;
     let value = event.target.value;
     const asArray = value.split("");
 
@@ -49,7 +56,7 @@ function TimerInput() {
       setValue(value);
     }
 
-    setCursor(start);
+    setCursor({ start, end });
   }
 
   return (
@@ -69,9 +76,6 @@ function TimerInput() {
           height: 62px; // ^
           border: none;
           padding: 0;
-           {
-            /* caret-color: transparent; */
-          }
 
           &::selection {
             background-color: rgb(255 255 255 / 0.2);
