@@ -1,6 +1,6 @@
 "use client";
 
-import {
+import React, {
   ChangeEvent,
   FocusEvent,
   SyntheticEvent,
@@ -10,13 +10,18 @@ import {
 } from "react";
 import Button from "./button";
 
-function TimerInput() {
+function TimerInput({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const ref = useRef<HTMLInputElement>(null);
   const [cursor, setCursor] = useState<{
     start: number | null;
     end: number | null;
   }>({ start: null, end: null });
-  const [value, setValue] = useState("00:00:00");
 
   useEffect(() => {
     ref.current.setSelectionRange(cursor.start, cursor.end);
@@ -92,10 +97,25 @@ function TimerInput() {
 }
 
 export default function Timer() {
+  const [displayValue, setDisplayValue] = useState("00:00:00");
+
+  function convertToSeconds(format: string) {
+    const hours = Number(format.slice(0, 2));
+    const minutes = Number(format.slice(3, 5));
+    const seconds = Number(format.slice(6, 8));
+    const time = hours * 3600 + minutes * 60 + seconds;
+    return time;
+  }
+
+  useEffect(() => {
+    const seconds = convertToSeconds("12:34:56");
+    console.log(seconds);
+  }, []);
+
   return (
     <div className="root">
       {/* <h1>00:00:00</h1> */}
-      <TimerInput />
+      <TimerInput value={displayValue} setValue={setDisplayValue} />
       <Button>Start</Button>
       <style jsx>{`
         .root {
