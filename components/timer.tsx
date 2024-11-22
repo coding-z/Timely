@@ -98,10 +98,21 @@ function TimerInput({
 }
 
 export default function Timer() {
-  const [displayValue, setDisplayValue] = useState("00:00:00");
-  const [timer, setTimer] = useState(0);
+  const [displayValue, setDisplayValue] = useState("");
+  const [timer, setTimer] = useState(3661);
   const [paused, setPaused] = useState(true);
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const hours = Math.floor(timer / 3600);
+    const minutes = Math.floor((timer - hours * 3600) / 60);
+    const seconds = timer - hours * 3600 - minutes * 60;
+    setDisplayValue(
+      `${String(hours).padStart(2, "0")
+      }:${String(minutes).padStart(2, "0")
+      }:${String(seconds).padStart(2, "0")}`
+    );
+  }, [timer]);
 
   useEffect(() => {
     if (timer <= 0 || paused || !active) {
@@ -122,7 +133,9 @@ export default function Timer() {
     return time;
   }
 
-  function handleStartTimer(event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+  function handleStartTimer(
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) {
     const time = convertToSeconds(displayValue);
     setTimer(time);
     setPaused(false);
@@ -132,7 +145,7 @@ export default function Timer() {
   return (
     <div className="root">
       {active ? (
-        <h1>00:00:00</h1>
+        <h1>{displayValue}</h1>
       ) : (
         <TimerInput value={displayValue} setValue={setDisplayValue} />
       )}
