@@ -4,6 +4,7 @@ import {
   ChangeEvent,
   FocusEvent,
   SyntheticEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -14,49 +15,41 @@ function TimerInput() {
   const [cursor, setCursor] = useState<number | null>(null);
   const [value, setValue] = useState("00:00:00");
 
+  useEffect(() => {
+    ref.current.setSelectionRange(cursor, cursor);
+  }, [cursor]);
+
   function handleBlur(event: FocusEvent<HTMLInputElement, Element>) {
     setCursor(null);
   }
 
   function handleSelectChange(event: SyntheticEvent<HTMLInputElement, Event>) {
-    const start = ref.current.selectionStart;
-    const end = ref.current.selectionEnd;
-    const eventType = event.nativeEvent.type;
-    const key = event.nativeEvent["key"];
-
-    if (cursor === null && eventType === "keyup") {
-      // Gained focus by keyboard
-      ref.current.selectionStart = 0;
-      ref.current.selectionEnd = 1;
-      setCursor(0);
-    } else if (eventType === "mouseup") {
-      // Handle click
-      if (start < 8) {
-        ref.current.selectionEnd = start + 1;
-        setCursor(start);
-      } else {
-        ref.current.selectionStart = 7;
-        setCursor(7);
-      }
-    } else if (eventType === "keyup" && key === "ArrowRight" && start < 8) {
-      // Handle valid key right
-      ref.current.selectionEnd = start + 1;
-      setCursor(start);
-    } else if (eventType === "keyup" && key === "ArrowLeft" && end > 0) {
-      // Handle valid key left
-      ref.current.selectionStart = end - 1;
-      setCursor(end - 1);
-    } else {
-      // Else invalid and ensure no change
-      ref.current.selectionStart = cursor;
-      ref.current.selectionEnd = cursor + 1;
-    }
+    setCursor(ref.current.selectionStart);
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    if (/^\d{2}:[0-5]\d:[0-5]\d$/.test(event.target.value)) {
-      setValue(event.target.value);
+    const start = ref.current.selectionStart;
+    let value = event.target.value;
+    const asArray = value.split("");
+
+    // Detect the type of change and calculate the result
+    switch (event.nativeEvent["inputType"]) {
+      case "insertText":
+        asArray.splice(start, 1);
+        value = asArray.join("");
+        break;
+      case "deleteContentBackward":
+      case "deleteContentForward":
+        asArray.splice(start, 0, "0");
+        value = asArray.join("");
     }
+
+    // Apply the result if valid
+    if (/^\d{2}:[0-5]\d:[0-5]\d$/.test(value)) {
+      setValue(value);
+    }
+
+    setCursor(start);
   }
 
   return (
@@ -76,12 +69,12 @@ function TimerInput() {
           height: 62px; // ^
           border: none;
           padding: 0;
-          caret-color: transparent;
+           {
+            /* caret-color: transparent; */
+          }
 
           &::selection {
-            background-color: ${cursor === null
-              ? "transparent"
-              : "rgb(255 255 255 / 0.35)"};
+            background-color: rgb(255 255 255 / 0.2);
             color: white;
           }
 
