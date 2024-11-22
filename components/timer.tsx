@@ -117,7 +117,6 @@ export default function Timer() {
   useEffect(() => {
     if (timer <= 0 || paused || !active) {
       if (timer <= 0) {
-        console.log("Done");
         setPaused(true);
         setActive(false);
       }

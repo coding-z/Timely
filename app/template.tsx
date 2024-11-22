@@ -20,6 +20,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
           *::before,
           *::after {
             box-sizing: inherit;
+            font-family: inherit;
+            font-optical-sizing: inherit;
+            font-weight: inherit;
+            font-style: inherit;
           }
         }
 
@@ -38,10 +42,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
           * {
             color: inherit;
-            font-family: inherit;
-            font-optical-sizing: inherit;
-            font-weight: inherit;
-            font-style: inherit;
           }
         }
 
