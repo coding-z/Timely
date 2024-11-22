@@ -15,12 +15,13 @@ export default function Glass({
   const [shineClass, setShineClass] = useState(false);
   const [shineCount, setShineCount] = useState(shine);
 
+  // if (shineCount !== shine) setShineCount(shine);
+  useEffect(() => setShineCount(shine), [shine]);
+
   useEffect(() => {
     if (!rootRef.current) return;
     setHeight(window.getComputedStyle(rootRef.current).height);
   }, [rootRef]);
-
-  useEffect(() => setShineCount(shine), [shine]);
 
   useEffect(() => {
     if (!shineCount) return;
