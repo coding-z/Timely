@@ -97,7 +97,13 @@ function TimerInput({
   );
 }
 
-export default function Timer() {
+export default function Timer({
+  iterations,
+  setIterations,
+}: {
+  iterations: number;
+  setIterations: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [displayValue, setDisplayValue] = useState("");
   const [timer, setTimer] = useState(0);
   const [paused, setPaused] = useState(true);
@@ -108,15 +114,17 @@ export default function Timer() {
     const minutes = Math.floor((timer - hours * 3600) / 60);
     const seconds = timer - hours * 3600 - minutes * 60;
     setDisplayValue(
-      `${String(hours).padStart(2, "0")
-      }:${String(minutes).padStart(2, "0")
-      }:${String(seconds).padStart(2, "0")}`
+      `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+        2,
+        "0"
+      )}:${String(seconds).padStart(2, "0")}`
     );
   }, [timer]);
 
   useEffect(() => {
     if (timer <= 0 || paused || !active) {
-      if (timer <= 0) {
+      if (timer <= 0 && active && !paused) {
+        setIterations(5);
         setPaused(true);
         setActive(false);
       }
