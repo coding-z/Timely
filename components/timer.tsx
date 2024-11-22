@@ -99,7 +99,7 @@ function TimerInput({
 
 export default function Timer() {
   const [displayValue, setDisplayValue] = useState("");
-  const [timer, setTimer] = useState(3661);
+  const [timer, setTimer] = useState(0);
   const [paused, setPaused] = useState(true);
   const [active, setActive] = useState(false);
 
@@ -116,13 +116,21 @@ export default function Timer() {
 
   useEffect(() => {
     if (timer <= 0 || paused || !active) {
-      // console.log("done");
+      if (timer <= 0) {
+        console.log("Done");
+        setPaused(true);
+        setActive(false);
+      }
       return;
     }
 
-    setTimeout(() => {
+    const timeout = window.setTimeout(() => {
       setTimer((time) => time - 1);
     }, 1000);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
   }, [active, paused, timer]);
 
   function convertToSeconds(format: string) {
@@ -142,6 +150,14 @@ export default function Timer() {
     setActive(true);
   }
 
+  function handlePauseTimer() {
+    setPaused(true);
+  }
+
+  function handleResumeTimer() {
+    setPaused(false);
+  }
+
   return (
     <div className="root">
       {active ? (
@@ -149,7 +165,15 @@ export default function Timer() {
       ) : (
         <TimerInput value={displayValue} setValue={setDisplayValue} />
       )}
-      <Button onClick={handleStartTimer}>Start</Button>
+      {active ? (
+        paused ? (
+          <Button onClick={handleResumeTimer}>Resume</Button>
+        ) : (
+          <Button onClick={handlePauseTimer}>Pause</Button>
+        )
+      ) : (
+        <Button onClick={handleStartTimer}>Start</Button>
+      )}
       <style jsx>{`
         .root {
           display: block flex;
