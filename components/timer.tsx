@@ -3,6 +3,7 @@
 import React, {
   ChangeEvent,
   FocusEvent,
+  MouseEvent,
   SyntheticEvent,
   useEffect,
   useRef,
@@ -98,6 +99,20 @@ function TimerInput({
 
 export default function Timer() {
   const [displayValue, setDisplayValue] = useState("00:00:00");
+  const [timer, setTimer] = useState(0);
+  const [paused, setPaused] = useState(true);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (timer <= 0 || paused || !active) {
+      // console.log("done");
+      return;
+    }
+
+    setTimeout(() => {
+      setTimer((time) => time - 1);
+    }, 1000);
+  }, [active, paused, timer]);
 
   function convertToSeconds(format: string) {
     const hours = Number(format.slice(0, 2));
@@ -107,16 +122,21 @@ export default function Timer() {
     return time;
   }
 
-  useEffect(() => {
-    const seconds = convertToSeconds("12:34:56");
-    console.log(seconds);
-  }, []);
+  function handleStartTimer(event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+    const time = convertToSeconds(displayValue);
+    setTimer(time);
+    setPaused(false);
+    setActive(true);
+  }
 
   return (
     <div className="root">
-      {/* <h1>00:00:00</h1> */}
-      <TimerInput value={displayValue} setValue={setDisplayValue} />
-      <Button>Start</Button>
+      {active ? (
+        <h1>00:00:00</h1>
+      ) : (
+        <TimerInput value={displayValue} setValue={setDisplayValue} />
+      )}
+      <Button onClick={handleStartTimer}>Start</Button>
       <style jsx>{`
         .root {
           display: block flex;
