@@ -15,6 +15,16 @@ export default function Glass({
   const [shineClass, setShineClass] = useState(false);
   const [shineCount, setShineCount] = useState(shine);
 
+  let interval1, interval2, timeout;
+
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearInterval(interval1);
+      window.clearInterval(interval2);
+    };
+  }, []);
+
   // if (shineCount !== shine) setShineCount(shine);
   useEffect(() => setShineCount(shine), [shine]);
 
@@ -22,6 +32,18 @@ export default function Glass({
     if (!rootRef.current) return;
     setHeight(window.getComputedStyle(rootRef.current).height);
   }, [rootRef]);
+
+  function handleStartShine() {
+    interval1 = window.setInterval(() => {
+      setShineClass(true);
+    }, 1500);
+
+    timeout = window.setTimeout(() => {
+      interval2 = window.setInterval(() => {
+        setShineClass(false);
+      }, 1500);
+    }, 500);
+  }
 
   useEffect(() => {
     if (!shineCount) return;
