@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { StyleRegistry, createStyleRegistry } from "styled-jsx";
 
 export default function StyledJsxRegistry({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

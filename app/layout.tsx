@@ -7,12 +7,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: "400",
-  adjustFontFallback: false,
+  adjustFontFallback: false
 });
 
 export const metadata: Metadata = {
   title: "Timely",
-  description: "Personal planning and time management web app",
+  description: "Personal planning and time management web app"
 };
 
 export default function RootLayout({
