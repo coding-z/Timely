@@ -94,6 +94,20 @@ function TimerInput() {
   );
 }
 
+// Different visual states for Timer
+// - Adjusting time
+// - Timer running
+// - Timer paused (can't adjust)
+// - Timer complete
+
+// Triggers for state changes
+// - Start button pressed (adjusting -> running)
+// - Pause button pressed (running -> paused)
+// - Resume button pressed (paused -> running)
+// - Cancel/reset button pressed (paused -> adjusting)
+// - Timer complets (running -> complete)
+// - Timeout alert finishes (complete -> adjusting)
+
 export default function Timer() {
   return (
     <div className="root">
