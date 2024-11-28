@@ -104,8 +104,8 @@ function TimerInput({ value, onValueChange }) {
 // - Pause button pressed (running -> paused)
 // - Resume button pressed (paused -> running)
 // - Cancel/reset button pressed (paused -> adjusting)
-// - Timer complets (running -> complete)
-// - Timeout alert finishes (complete -> adjusting)
+// - Timer completes (running -> complete)
+// - Timeout alert finishes (complete -> adjusting) !!TODO!!
 
 enum TimerStatus {
   ADJUSTING,
@@ -113,27 +113,49 @@ enum TimerStatus {
   PAUSED,
   COMPLETE
 }
+// TODO: Shine timer glass on complete status
 
 export default function Timer() {
   const [formattedValue, setFormattedValue] = useState("00:00:00");
   const [status, setStatus] = useState(TimerStatus.ADJUSTING);
+  const countdownIntervalRef = useRef(null);
+
+  // Calculate timer value in seconds from formatted value
+  const hours = Number(formattedValue.slice(0, 2));
+  const minutes = Number(formattedValue.slice(2, 5));
+  const seconds = Number(formattedValue.slice(6, 8));
+  const value = hours * 3600 + minutes * 60 + seconds;
+
+  function handlePlay() {
+    setStatus(TimerStatus.RUNNING);
+    countdownIntervalRef.current = window.setInterval(() => {
+      // TODO: Decrement timer value in seconds
+    }, 1000);
+  }
   
   return (
     <div className="root">
       {status === TimerStatus.ADJUSTING ? (
-        <TimerInput value={formattedValue} onValueChange={setFormattedValue} />
+        <TimerInput
+          value={formattedValue}
+          onValueChange={setFormattedValue}
+        />
       ) : (
         <h1>{formattedValue}</h1>
       )}
       {status === TimerStatus.RUNNING ? (
-        <Button>Pause</Button>
+        <Button onClick={() => setStatus(TimerStatus.PAUSED)}>Pause</Button>
       ) : status === TimerStatus.PAUSED ? (
         <div className="row">
-          <Button>Cancel</Button>
-          <Button>Resume</Button>
+          <Button
+            onClick={() => setStatus(TimerStatus.ADJUSTING)}
+          >
+            Cancel
+          </Button>
+          <Button onClick={handlePlay}>Resume</Button>
         </div>
       ) : (
-        <Button>Start</Button>
+        <Button onClick={handlePlay}>Start</Button>
       )}
       <style jsx>{`
         .root {
