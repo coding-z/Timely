@@ -16,9 +16,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         html {
           box-sizing: border-box;
 
-          *,
-          *::before,
-          *::after {
+          *, *::before, *::after {
             box-sizing: inherit;
           }
         }
@@ -45,13 +43,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           }
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p {
+        h1, h2, h3, h4, h5, h6, p {
           margin: 0;
         }
 
