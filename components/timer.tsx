@@ -9,10 +9,9 @@ import {
 } from "react";
 import Button from "./button";
 
-function TimerInput() {
+function TimerInput({ value, onValueChange }) {
   const ref = useRef<HTMLInputElement>(null);
   const [cursor, setCursor] = useState<number | null>(null);
-  const [value, setValue] = useState("00:00:00");
 
   function handleBlur(event: FocusEvent<HTMLInputElement, Element>) {
     setCursor(null);
@@ -55,7 +54,7 @@ function TimerInput() {
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     if (/^\d{2}:[0-5]\d:[0-5]\d$/.test(event.target.value)) {
-      setValue(event.target.value);
+      onValueChange(event.target.value);
     }
   }
 
@@ -108,12 +107,34 @@ function TimerInput() {
 // - Timer complets (running -> complete)
 // - Timeout alert finishes (complete -> adjusting)
 
+enum TimerStatus {
+  ADJUSTING,
+  RUNNING,
+  PAUSED,
+  COMPLETE
+}
+
 export default function Timer() {
+  const [formattedValue, setFormattedValue] = useState("00:00:00");
+  const [status, setStatus] = useState(TimerStatus.ADJUSTING);
+  
   return (
     <div className="root">
-      {/* <h1>00:00:00</h1> */}
-      <TimerInput />
-      <Button>Start</Button>
+      {status === TimerStatus.ADJUSTING ? (
+        <TimerInput value={formattedValue} onValueChange={setFormattedValue} />
+      ) : (
+        <h1>{formattedValue}</h1>
+      )}
+      {status === TimerStatus.RUNNING ? (
+        <Button>Pause</Button>
+      ) : status === TimerStatus.PAUSED ? (
+        <div className="row">
+          <Button>Cancel</Button>
+          <Button>Resume</Button>
+        </div>
+      ) : (
+        <Button>Start</Button>
+      )}
       <style jsx>{`
         .root {
           display: block flex;
@@ -125,6 +146,14 @@ export default function Timer() {
 
         h1 {
           font-size: var(--font-size-xl);
+        }
+
+        .row {
+          display: block flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 10px;
         }
       `}</style>
     </div>
