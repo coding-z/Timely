@@ -1,12 +1,12 @@
-import Checklist from "../components/checklist";
-import Glass from "../components/glass";
-import Timer from "../components/timer";
+"use client";
 
 export default function Page() {
   return (
-    <Glass>
-      {/* <Checklist /> */}
-      <Timer />
-    </Glass>
+    <>
+      <h1>Hi</h1>
+      <style jsx>{`
+        
+      `}</style>
+    </>
   );
 }

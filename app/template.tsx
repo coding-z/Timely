@@ -5,14 +5,17 @@ import React from "react";
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {children}
+      <div id="root">
+        <header>
+          <button>Lists</button>
+          <button>Timers</button>
+          <button>Calendar</button>
+        </header>
+        <main>
+          {children}
+        </main>
+      </div>
       <style jsx global>{`
-        :root {
-          --font-size-md: 16px;
-          --font-size-xl: 48px;
-          --border-radius: 5px;
-        }
-
         html {
           box-sizing: border-box;
 
@@ -27,30 +30,29 @@ export default function Template({ children }: { children: React.ReactNode }) {
           justify-content: center;
           align-items: center;
           margin: 0;
+          padding: 0;
           overflow-x: hidden;
           width: 100vw;
           min-height: 100vh;
           height: 100vh;
-          background-image: linear-gradient(135deg, #f97794 10%, #623aa2 100%);
-          color: rgb(255 255 255 / 0.8);
-
-          * {
-            color: inherit;
-            font-family: inherit;
-            font-optical-sizing: inherit;
-            font-weight: inherit;
-            font-style: inherit;
-          }
         }
 
-        h1, h2, h3, h4, h5, h6, p {
-          margin: 0;
+        #root {
+          display: block flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          padding: 50px;
         }
 
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
+        header {
+          display: block flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: stretch;
+          gap: 10px;
         }
       `}</style>
     </>
