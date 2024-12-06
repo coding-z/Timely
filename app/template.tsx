@@ -37,6 +37,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
           }
         }
 
+        h1, h2, h3, h4, h5, h6, p {
+          margin: 0;
+          padding: 0;
+        }
+
         button {
           display: block flex;
           flex-direction: row;
@@ -52,7 +57,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
           transform: translateY(0);
           transition: transform 0.4s;
           position: relative;
-          height: 40px;
+          height: 50px;
+          width: 50px;
           overflow: hidden;
 
           &::after {
@@ -62,16 +68,17 @@ export default function Template({ children }: { children: React.ReactNode }) {
             background-color: rgb(255 255 255 / 0.5);
             height: 100%;
             width: 50%;
-            transform: skewX(45deg) translateX(calc(150% + 20px));
+            transform: skewX(45deg) translateX(calc(150% + 25px));
             transition: transform 0.4s;
           }
           
           &:hover {
             cursor: pointer;
             transform: translateY(-5px);
+            background-color: rgb(255 255 255 / 0.1);
 
             &::after {
-              transform: skewX(45deg) translateX(calc(-150% - 20px));
+              transform: skewX(45deg) translateX(calc(-150% - 25px));
             }
           }
         }
