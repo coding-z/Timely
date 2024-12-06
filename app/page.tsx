@@ -5,6 +5,7 @@ import { CiCalendar } from "react-icons/ci";
 import { GoChecklist, GoClock } from "react-icons/go";
 import Lists from "../components/lists";
 import Timers from "../components/timers";
+import { features } from "process";
 
 enum Features {
   LISTS,
@@ -18,10 +19,16 @@ export default function Page() {
     <>
       <div id="root">
         <header>
-          <button>
+          <button
+            className={page === Features.LISTS && "active"}
+            onClick={() => setPage(Features.LISTS)}
+          >
             <GoChecklist size={40} />
           </button>
-          <button>
+          <button
+            className={page === Features.TIMERS && "active"}
+            onClick={() => setPage(Features.TIMERS)}
+          >
             <GoClock size={40} />
           </button>
           <button>

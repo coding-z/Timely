@@ -61,6 +61,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
           width: 50px;
           overflow: hidden;
 
+          &.active {
+            background-color: rgb(255 255 255 / 0.2);
+          }
+
           &::after {
             content: "";
             display: block;
