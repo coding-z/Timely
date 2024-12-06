@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-interface ListData {
+export interface ListData {
   id: number;
   title: string;
   itemCount: number;
