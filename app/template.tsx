@@ -37,9 +37,20 @@ export default function Template({ children }: { children: React.ReactNode }) {
           }
         }
 
-        h1, h2, h3, h4, h5, h6, p {
+        h1, h2, h3, h4, h5, h6, p, ul {
           margin: 0;
           padding: 0;
+        }
+
+        ul {
+          list-style: none;
+          display: block flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        li {
+          margin: 0;
         }
 
         button {
