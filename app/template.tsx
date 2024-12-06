@@ -5,16 +5,7 @@ import React from "react";
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div id="root">
-        <header>
-          <button>Lists</button>
-          <button>Timers</button>
-          <button>Calendar</button>
-        </header>
-        <main>
-          {children}
-        </main>
-      </div>
+      {children}
       <style jsx global>{`
         html {
           box-sizing: border-box;
@@ -26,6 +17,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
         body {
           display: block flex;
+          position: relative;
           flex-direction: column;
           justify-content: center;
           align-items: center;
@@ -35,24 +27,53 @@ export default function Template({ children }: { children: React.ReactNode }) {
           width: 100vw;
           min-height: 100vh;
           height: 100vh;
+          background: no-repeat center url("/leaf-background.jpg");
+          background-size: cover;
+          color: rgb(255 255 255 / 0.8);
+
+          * {
+            font-family: inherit;
+            color: inherit;
+          }
         }
 
-        #root {
+        button {
           display: block flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
-          width: 100%;
-          height: 100%;
-          padding: 50px;
-        }
+          padding: 10px;
+          background-color: transparent;
+          border-radius: 5px;
+          border: 1px solid rgb(255 255 255 / 0.2);
+          box-shadow:
+            5px 5px 20px rgb(0 0 0 / 0.1),
+            inset 5px 5px 20px rgb(255 255 255 / 0.1);
+          transform: translateY(0);
+          transition: transform 0.4s;
+          position: relative;
+          height: 40px;
+          overflow: hidden;
 
-        header {
-          display: block flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: stretch;
-          gap: 10px;
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: rgb(255 255 255 / 0.5);
+            height: 100%;
+            width: 50%;
+            transform: skewX(45deg) translateX(calc(150% + 20px));
+            transition: transform 0.4s;
+          }
+          
+          &:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+
+            &::after {
+              transform: skewX(45deg) translateX(calc(-150% - 20px));
+            }
+          }
         }
       `}</style>
     </>
