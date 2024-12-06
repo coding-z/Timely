@@ -1,9 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { CiCalendar } from "react-icons/ci";
 import { GoChecklist, GoClock } from "react-icons/go";
+import Lists from "../components/lists";
+import Timers from "../components/timers";
+
+enum Features {
+  LISTS,
+  TIMERS
+}
 
 export default function Page() {
+  const [page, setPage] = useState(Features.LISTS);
+  
   return (
     <>
       <div id="root">
@@ -19,7 +29,8 @@ export default function Page() {
           </button>
         </header>
         <main>
-          <h1>Stuff goes here</h1>
+          {page === Features.LISTS && <Lists />}
+          {page === Features.TIMERS && <Timers />}
         </main>
       </div>
       <style jsx>{`
