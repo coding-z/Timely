@@ -4,10 +4,23 @@ import { useState } from "react";
 import List from "./list";
 import { GoChevronLeft } from "react-icons/go";
 
+export enum ItemStatus {
+  TODO,
+  DONE
+}
+
+export interface ListItemData {
+  id: number;
+  title: string;
+  description?: string;
+  status: ItemStatus;
+}
+
 export interface ListData {
   id: number;
   title: string;
   itemCount: number;
+  items: ListItemData[];
 }
 
 export default function Lists() {
@@ -15,17 +28,50 @@ export default function Lists() {
     {
       id: 0,
       title: "Daily To-Do",
-      itemCount: 4
+      itemCount: 3,
+      items: [
+        {
+          id: 0,
+          title: "Get Up",
+          status: ItemStatus.TODO,
+          description: "This is self-explanatory"
+        },
+        {
+          id: 1,
+          title: "Eat Lunch",
+          status: ItemStatus.DONE,
+          description: "This is very good"
+        },
+        {
+          id: 2,
+          title: "Work on Project",
+          status: ItemStatus.DONE,
+          description: "I'm doing this right now"
+        }
+      ]
     },
     {
       id: 1,
       title: "Pre-Flight",
-      itemCount: 10
+      itemCount: 2,
+      items: [
+        {
+          id: 0,
+          title: "Check Fuel",
+          status: ItemStatus.TODO
+        },
+        {
+          id: 1,
+          title: "Attach Wings",
+          status: ItemStatus.DONE
+        }
+      ]
     },
     {
       id: 2,
       title: "Weekly Review",
-      itemCount: 8
+      itemCount: 0,
+      items: []
     }
   ]);
   const [current, setCurrent] = useState<number | null>(null);
