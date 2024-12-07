@@ -78,6 +78,7 @@ export default function Page() {
           box-shadow:
             5px 5px 20px rgb(0 0 0 / 0.1),
             inset 5px 5px 20px rgb(255 255 255 / 0.1);
+          width: 500px;
         }
       `}</style>
     </>

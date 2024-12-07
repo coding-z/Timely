@@ -46,7 +46,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
           list-style: none;
           display: block flex;
           flex-direction: column;
-          gap: 10px;
         }
 
         li {
