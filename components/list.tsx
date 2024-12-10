@@ -1,5 +1,5 @@
 import { GoCheckbox, GoChevronLeft, GoDotFill } from "react-icons/go";
-import { ItemStatus, ListData } from "./lists";
+import { ItemStatus, ListData } from "../app/lists/page";
 
 export default function List({ list, onClose }: { list: ListData; onClose: () => void; }) {
   return (

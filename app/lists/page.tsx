@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import List from "./list";
+import List from "../../components/list";
 import { GoChevronLeft } from "react-icons/go";
 
 export enum ItemStatus {
@@ -23,7 +23,7 @@ export interface ListData {
   items: ListItemData[];
 }
 
-export default function Lists() {
+export default function Page() {
   const [lists, setLists] = useState<ListData[]>([
     {
       id: 0,

@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { CiCalendar } from "react-icons/ci";
 import { GoChecklist, GoClock } from "react-icons/go";
-import Lists from "../components/lists";
-import Timers from "../components/timers";
 import { features } from "process";
 
 enum Features {
@@ -35,10 +33,6 @@ export default function Page() {
             <CiCalendar size={40} />
           </button>
         </header>
-        <main>
-          {page === Features.LISTS && <Lists />}
-          {page === Features.TIMERS && <Timers />}
-        </main>
       </div>
       <style jsx>{`
         #root {
