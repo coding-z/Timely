@@ -1,0 +1,56 @@
+.timer {
+}
+
+.timer-editor {
+  display: block flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-block: 70px;
+  gap: 10px;
+}
+
+.digit-editor {
+  position: relative;
+  display: block flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.digit-editor p {
+  position: absolute;
+  top: -70px;
+}
+
+.digit-editor input {
+  background-color: transparent;
+  font-size: 32px;
+  border: none;
+  width: 70px;
+  height: 50px;
+  font-weight: bold;
+}
+
+.digit-editor input:focus {
+  border: 2px solid rgb(255 255 255 / 0.8);
+  outline: none;
+  border-radius: 5px;
+}
+
+.digit-editor h1:hover {
+  cursor: pointer;
+}
+
+.digit-editor h1:first-of-type {
+  position: absolute;
+  top: -40px;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.digit-editor h1:last-of-type {
+  position: absolute;
+  bottom: -40px;
+  color: rgb(255 255 255 / 0.5);
+}

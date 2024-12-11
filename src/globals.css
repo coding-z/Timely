@@ -27,6 +27,9 @@ body {
 
 body * {
   color: inherit;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -35,8 +38,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 main {
   background-color: rgb(255 255 255 / 0.1);
-  backdrop-filter: blur(10px);
-  padding: 30px;
+  backdrop-filter: blur(20px);
+  padding: 50px;
   border-radius: 5px;
   border: 1px solid rgb(255 255 255 / 0.2);
 }
