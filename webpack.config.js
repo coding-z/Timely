@@ -22,5 +22,12 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
-  mode: "development"
+  mode: "development",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "docs")
+    },
+    compress: true,
+    port: 8080
+  }
 };
