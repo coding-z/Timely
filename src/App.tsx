@@ -3,6 +3,8 @@ import "./globals.css";
 
 export default function App() {
   return (
-    <h1>In Progress</h1>
+    <main>
+      <h1>Timer</h1>
+    </main>
   );
 }
