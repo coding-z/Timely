@@ -2,29 +2,33 @@
   "name": "timely",
   "version": "1.0.0",
   "description": "Personal planning and time management web app",
-  "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coding-z/Timely.git"
   },
   "keywords": [],
-  "author": "coding-z",
-  "dependencies": {
-    "next": "^15.0.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0",
-    "styled-jsx": "^5.1.6"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coding-z/Timely/issues"
   },
+  "homepage": "https://github.com/coding-z/Timely#readme",
   "devDependencies": {
     "@types/node": "^22.10.1",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
-    "eslint": "^9.16.0",
-    "eslint-config-next": "^15.0.4",
-    "typescript": "^5.7.2"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
