@@ -7,7 +7,6 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    {/* <App /> */}
-    <h1>Hi</h1>
+    <App />
   </StrictMode>
 );
